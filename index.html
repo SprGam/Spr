@@ -26,26 +26,44 @@
 
         .game-selection {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
             padding: 15px;
             margin-top: 20px;
             overflow-y: auto;
             flex-grow: 1;
         }
 
-        .game-selection img {
+        .game-item {
+            text-align: center;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .game-item img {
             width: 100%;
             height: auto;
-            cursor: pointer;
+            display: block;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .game-selection img:hover {
+        .game-item img:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-title {
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: capitalize;
+            border-radius: 0 0 10px 10px;
+            margin-top: 5px;
         }
 
         /* Full-screen iframe style */
@@ -95,25 +113,40 @@
 </head>
 <body>
 
-    <h1>Choose a Game to Play</h1>
+    <!-- Main Title -->
+    <h1>Choose MOD</h1>
+
+    <!-- Game Selection Section Title -->
+    <h2 style="text-align: center; font-size: 24px; margin-top: 20px;"></h2>
 
     <div class="game-selection">
-        <!-- Game images (clickable) -->
-        <div><img src="https://incredibox-game.io/data/image/sprunki-phase-1.jpg" alt="Game 1" onclick="startGame('https://forkphorus.github.io/app.html?id=1095241732')"></div>
-        <div><img src="https://incredibox-game.io/data/image/sprunki-phase-1.jpg" alt="Game 2" onclick="startGame('https://forkphorus.github.io/app.html?id=1095241732')"></div>
-        <div><img src="https://incredibox-game.io/data/image/sprunki-phase-1.jpg" alt="Game 3" onclick="startGame('https://example.com/game3.html')"></div>
-        <div><img src="game4.jpg" alt="Game 4" onclick="startGame('https://example.com/game4.html')"></div>
-        <div><img src="game5.jpg" alt="Game 5" onclick="startGame('https://example.com/game5.html')"></div>
-        <div><img src="game6.jpg" alt="Game 6" onclick="startGame('https://example.com/game6.html')"></div>
-        <div><img src="game7.jpg" alt="Game 7" onclick="startGame('https://example.com/game7.html')"></div>
-        <div><img src="game8.jpg" alt="Game 8" onclick="startGame('https://example.com/game8.html')"></div>
-        <div><img src="game9.jpg" alt="Game 9" onclick="startGame('https://example.com/game9.html')"></div>
-        <div><img src="game10.jpg" alt="Game 10" onclick="startGame('https://example.com/game10.html')"></div>
+        <!-- Game 1 -->
+        <div class="game-item" onclick="startGame('https://html-classic.itch.zone/html/12283728/index.html')">
+            <img src="https://img.itch.zone/aW1nLzE4NDgyMzQ3LnBuZw==/315x250%23c/62qCAR.png" alt="Game 1">
+            <div class="game-title">PHASE 3</div>
+        </div>
+
+        <!-- Game 2 -->
+        <div class="game-item" onclick="startGame('https://html-classic.itch.zone/html/12054704/index.html')">
+            <img src="https://sprunki.com/incredibox-sprunki.jpg" alt="Game 2">
+            <div class="game-title">OFFICIAL MOD</div>
+        </div>
+
+        <!-- Game 3 -->
+        <div class="game-item" onclick="startGame('https://html-classic.itch.zone/html/12034083/index.html')">
+            <img src="https://data.sprunked.org/img/sprunked-1-0_0115.jpg" alt="Game 3">
+            <div class="game-title">SPRUNKED</div>
+        </div>
+
+        <!-- Game 4 -->
+        <div class="game-item" onclick="startGame('https://trowgames.github.io/sp/app.html?id=1097981280')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8t9vCsp0T5u8yL4gqnAdH5ic6qg0B-l1sng&s" alt="Game 4">
+            <div class="game-title">PHASE 4</div>
+        </div>
     </div>
 
     <!-- Full-screen iframe container for the game -->
     <div class="iframe-container" id="game-container">
-        <button class="close-btn" onclick="closeGame()">Close Game</button>
         <iframe id="game-frame" src=""></iframe>
     </div>
 
