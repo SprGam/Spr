@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .game-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            padding: 15px;
+            margin-top: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .game-selection img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-selection img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Full-screen iframe style */
+        .iframe-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Button to close the game */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: rgba(0, 0, 0, 1);
+        }
+
+        @media (max-width: 600px) {
+            iframe {
+                height: 100%; /* Keep the iframe full-screen on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Choose a Game to Play</h1>
+
+    <div class="game-selection">
+        <!-- Game images (clickable) -->
+        <div><img src="https://incredibox-game.io/data/image/sprunki-phase-1.jpg" alt="Game 1" onclick="startGame('https://forkphorus.github.io/app.html?id=1095241732')"></div>
+        <div><img src="https://incredibox-game.io/data/image/sprunki-phase-1.jpg" alt="Game 2" onclick="startGame('https://forkphorus.github.io/app.html?id=1095241732')"></div>
+        <div><img src="https://incredibox-game.io/data/image/sprunki-phase-1.jpg" alt="Game 3" onclick="startGame('https://example.com/game3.html')"></div>
+        <div><img src="game4.jpg" alt="Game 4" onclick="startGame('https://example.com/game4.html')"></div>
+        <div><img src="game5.jpg" alt="Game 5" onclick="startGame('https://example.com/game5.html')"></div>
+        <div><img src="game6.jpg" alt="Game 6" onclick="startGame('https://example.com/game6.html')"></div>
+        <div><img src="game7.jpg" alt="Game 7" onclick="startGame('https://example.com/game7.html')"></div>
+        <div><img src="game8.jpg" alt="Game 8" onclick="startGame('https://example.com/game8.html')"></div>
+        <div><img src="game9.jpg" alt="Game 9" onclick="startGame('https://example.com/game9.html')"></div>
+        <div><img src="game10.jpg" alt="Game 10" onclick="startGame('https://example.com/game10.html')"></div>
+    </div>
+
+    <!-- Full-screen iframe container for the game -->
+    <div class="iframe-container" id="game-container">
+        <button class="close-btn" onclick="closeGame()">Close Game</button>
+        <iframe id="game-frame" src=""></iframe>
+    </div>
+
+    <script>
+        // Start game function
+        function startGame(gameUrl) {
+            // Hide the game selection grid
+            document.querySelector('.game-selection').style.display = 'none';
+
+            // Show the iframe container
+            document.getElementById('game-container').style.display = 'block';
+
+            // Set the iframe src to the selected game URL
+            document.getElementById('game-frame').src = gameUrl;
+        }
+
+        // Close game function
+        function closeGame() {
+            // Show the game selection grid again
+            document.querySelector('.game-selection').style.display = 'grid';
+
+            // Hide the iframe container
+            document.getElementById('game-container').style.display = 'none';
+
+            // Stop the game by clearing the iframe src
+            document.getElementById('game-frame').src = '';
+        }
+    </script>
+
+</body>
+</html>
