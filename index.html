@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Game Selection</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,15 +13,22 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-            overflow: hidden;
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding-top: env(safe-area-inset-top, 0px); /* Safe area for the notch */
         }
 
+        /* Fixed Header Title */
         h1 {
             background-color: #333;
             color: white;
-            padding: 10px;
+            padding: 20px;
             margin: 0;
             text-align: center;
+            position: fixed; /* Fix the title at the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999; /* Make sure it stays above other content */
         }
 
         .game-selection {
@@ -29,9 +36,9 @@
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 20px;
             padding: 15px;
-            margin-top: 20px;
-            overflow-y: auto;
-            flex-grow: 1;
+            margin-top: 120px; /* Add space below the fixed title */
+            flex-grow: 1; /* Allow it to grow and take remaining space */
+            padding-bottom: 120px; /* Ensure there's space for the fixed banner */
         }
 
         .game-item {
@@ -40,13 +47,19 @@
             border-radius: 10px;
             position: relative;
             cursor: pointer;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 280px; /* Fixed height for all game items */
         }
 
         .game-item img {
             width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 10px;
+            height: 230px; /* Fixed height for all images */
+            object-fit: cover; /* Ensures images maintain aspect ratio while filling the area */
+            border-radius: 10px 10px 0 0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -63,7 +76,6 @@
             font-weight: bold;
             text-transform: capitalize;
             border-radius: 0 0 10px 10px;
-            margin-top: 5px;
         }
 
         /* Full-screen iframe style */
@@ -104,6 +116,20 @@
             background-color: rgba(0, 0, 0, 1);
         }
 
+        /* Fixed banner at the bottom */
+        .banner-ad {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            z-index: 999;
+        }
+
         @media (max-width: 600px) {
             iframe {
                 height: 100%; /* Keep the iframe full-screen on smaller screens */
@@ -113,7 +139,7 @@
 </head>
 <body>
 
-    <!-- Main Title -->
+    <!-- Fixed Title -->
     <h1>Choose MOD</h1>
 
     <!-- Game Selection Section Title -->
@@ -143,11 +169,25 @@
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8t9vCsp0T5u8yL4gqnAdH5ic6qg0B-l1sng&s" alt="Game 4">
             <div class="game-title">PHASE 4</div>
         </div>
+
+                <!-- Game 5 -->
+        <div class="game-item" onclick="startGame('https://trowgames.github.io/sp/app.html?id=1086646176')">
+            <img src="https://img.itch.zone/aW1nLzE4NDIzMjExLnBuZw==/original/C891HY.png" alt="Game 5">
+            <div class="game-title">Cool As Ice</div>
+        </div>
+
+
+        <!-- Add more games here if necessary -->
     </div>
 
     <!-- Full-screen iframe container for the game -->
     <div class="iframe-container" id="game-container">
         <iframe id="game-frame" src=""></iframe>
+    </div>
+
+    <!-- Fixed Banner Ad -->
+    <div class="banner-ad">
+        <p></p>
     </div>
 
     <script>
